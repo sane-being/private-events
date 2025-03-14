@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: %i[ index show ]
+  # before_action :verify_event_creator, only: %i[ edit update destroy ]
 
   # GET /events or /events.json
   def index
@@ -22,7 +23,8 @@ class EventsController < ApplicationController
 
   # POST /events or /events.json
   def create
-    @event = Event.new(event_params)
+    # @event = Event.new(event_params)
+    @event= current_user.created_events.build(event_params)
 
     respond_to do |format|
       if @event.save
@@ -68,4 +70,9 @@ class EventsController < ApplicationController
     def event_params
       params.expect(event: [ :date, :location ])
     end
+
+  # # verify event creator
+  # def verify_event_creator
+  #   @event.user.email == current_user.email
+  # end
 end
