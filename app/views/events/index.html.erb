@@ -4,15 +4,18 @@
 
 <h1>Events</h1>
 
+<% if user_signed_in? %>
+  <p><%= link_to "New event", new_event_path %></p>
+<% end %>
+
 <div id="events">
   <% @events.each do |event| %>
     <%= render event %>
+    <p>Created by: <%= event.creator.email%></p>
     <p>
       <%= link_to "Show this event", event %>
     </p>
   <% end %>
 </div>
 
-<% if user_signed_in? %>
-  <p><%= link_to "New event", new_event_path %></p>
-<% end %>
+

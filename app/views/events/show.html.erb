@@ -1,11 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @event %>
+<p>Created by: <%= @event.creator.email%></p>
 
 <div>
   <p><%= link_to "Back to events", events_path %></p>
   <% if user_signed_in? & (@event.creator_id == current_user.id) %>
-    <p><%= link_to "Edit this event", edit_event_path(@event) %> |</p>
+    <p><%= link_to "Edit this event", edit_event_path(@event) %></p>
     <p><%= button_to "Destroy this event", @event, method: :delete %></p>
   <% end %>
 </div>
