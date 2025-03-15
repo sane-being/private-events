@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: %i[ index show ]
-  # before_action :verify_event_creator, only: %i[ edit update destroy ]
+  before_action :verify_event_creator, only: %i[ edit update destroy ]
 
   # GET /events or /events.json
   def index
@@ -71,8 +71,10 @@ class EventsController < ApplicationController
       params.expect(event: [ :date, :location ])
     end
 
-  # # verify event creator
-  # def verify_event_creator
-  #   @event.user.email == current_user.email
-  # end
+    # verify event creator
+    def verify_event_creator
+      if @event.creator_id != current_user.id
+        redirect_to event_path(@event), alert: "You are not authorized! Only creator can delete this event."
+      end
+    end
 end
