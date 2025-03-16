@@ -5,8 +5,16 @@
 
 <div>
   <p><%= link_to "Back to events", events_path %></p>
-  <% if user_signed_in? & (@event.creator_id == current_user.id) %>
-    <p><%= link_to "Edit this event", edit_event_path(@event) %></p>
-    <p><%= button_to "Destroy this event", @event, method: :delete %></p>
+  <% if user_signed_in? %>
+    <% if (@event.creator_id == current_user.id)%>
+      <p><%= link_to "Edit this event", edit_event_path(@event) %></p>
+      <p><%= button_to "Destroy this event", @event, method: :delete %></p>
+    <% else %>
+      <% if @attendance.present? %>
+        <p><%= button_to "Cancel attendance", event_attendance_path(@event, @attendance), method: :delete %> </p>
+      <% else %>
+        <p><%= button_to "Attend this event", event_attendances_path(@event), method: :post %></p>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
