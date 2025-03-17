@@ -8,7 +8,7 @@
 
 <div id="events">
   <h2>List of events created by you:</h2>
-  <% @created_events.each do |event| %>
+  <% @user.created_events.each do |event| %>
     <p>
       <%= render event %>
       <%= link_to "Show this event", event %>
@@ -20,22 +20,18 @@
   <h2>List of events you are attending:</h2>
 
   <h3>Past Events</h3>
-  <% @attendances.each do |attendance| %>
-    <% if attendance.attended_event.date < Date.today %>
-      <p>
-        <%= render attendance.attended_event %>
-        <%= link_to "Show this event", attendance.attended_event %>
-      </p>
-    <% end %>
+  <% @user.attended_events.each do |event| %>
+    <p>
+      <%= render event %>
+      <%= link_to "Show this event", event %>
+    </p>
   <% end %>
 
   <h3>Upcoming Events</h3>
-  <% @attendances.each do |attendance| %>
-    <% if attendance.attended_event.date >= Date.today %>
-      <p>
-        <%= render attendance.attended_event %>
-        <%= link_to "Show this event", attendance.attended_event %>
-      </p>
-    <% end %>
+  <% @user.attended_events.each do |event| %>
+    <p>
+      <%= render event %>
+      <%= link_to "Show this event", event %>
+    </p>
   <% end %>
 </div>

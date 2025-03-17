@@ -5,14 +5,10 @@ class Event < ApplicationRecord
 
   # associations
   belongs_to :creator, class_name: "User"
-  has_many :attendees, through: :attendance, source: :attended_events
   has_many :attendances, foreign_key: :attended_event_id
+  has_many :attendees, through: :attendances
 
-  def self.past
-    Event.where("date < ?", Date.today)
-  end
-
-  def self.upcoming
-    Event.where("date >= ?", Date.today)
-  end
+  # scopes
+  scope :past, -> { where("date < ?", Date.today) }
+  scope :upcoming, -> { where("date >= ?", Date.today) }
 end

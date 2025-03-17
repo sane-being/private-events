@@ -11,7 +11,6 @@ class EventsController < ApplicationController
   # GET /events/1 or /events/1.json
   def show
     @attendance = current_user.attendances.find_by(attended_event_id: @event.id)
-    @attendances = Attendance.where(attended_event_id: @event.id)
   end
 
   # GET /events/new
