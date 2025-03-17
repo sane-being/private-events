@@ -1,4 +1,6 @@
 <div id="<%= dom_id event %>">
+  <%= image_tag event.featured_image if event.featured_image.attached? %>
+
   <p>
     <strong>Title:</strong>
     <%= event.title %>
