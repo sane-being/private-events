@@ -5,7 +5,11 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @event %>
-<p>Created by: <%= @event.creator.email%></p>
+<p><strong>Created by:</strong> <%= @event.creator.email%></p>
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
 
 <div>
   <% if user_signed_in? %>

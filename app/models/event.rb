@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  has_rich_text :description
+
   # validations
   validates :date, presence: true
   validates :location, presence: true
