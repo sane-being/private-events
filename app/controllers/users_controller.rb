@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # path helper: user_path(@user)
   def show
     @user = current_user
-    @created_events = Event.where(creator_id: current_user.id)
+    @created_events = Event.where(creator_id: @user.id)
+    @attendances = Attendance.where(attendee_id: @user.id)
   end
 end
