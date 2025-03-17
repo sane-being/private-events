@@ -4,16 +4,14 @@ class AttendancesController < ApplicationController
   before_action :verify_not_event_creator
 
   def create
-    if Attendance.where(attended_event_id: params[:event_id]).where(attendee_id: current_user.id).exists?
-      @attendance = Attendance.find_by(attended_event_id: params[:event_id], attendee_id: current_user.id)
-      redirect_to event_path(@event), notice: "You are already attending this event!"
+    @attendance = Attendance.find_or_initialize_by({
+      attended_event_id: params[:event_id],
+      attendee_id: current_user.id
+    })
+    if @attendance.save
+      redirect_to event_path(@event), notice: "You are attending this event!"
     else
-      @attendance = Attendance.new ({ attended_event_id: params[:event_id], attendee_id: current_user.id })
-      if @attendance.save
-        redirect_to event_path(@event), notice: "You are attending this event!"
-      else
-        render "events/show", status: :unprocessable_entity
-      end
+      render "events/show", status: :unprocessable_entity
     end
   end
 
