@@ -23,18 +23,21 @@
   </head>
 
   <body>
-    <ul>
-      <li><%= link_to "Home", root_path %></li>
-
-      <% if user_signed_in?%>
-        <li><%= link_to "Log Out", destroy_user_session_path, data: { turbo_method: :delete } %></li>
-        <li><%= link_to "My Profile", user_path(@user) %></li>
-      <% else %>
-        <li><%= link_to "Login", new_user_session_path %></li>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-      <% end %>
-    </ul>
-    <p style="color: red;"><%= alert %></p>
-    <%= yield %>
+    <header>
+      <ul>
+        <li><%= link_to "EventsSocial", root_path %></li>
+        <% if user_signed_in?%>
+          <li><%= link_to "Log Out", destroy_user_session_path, data: { turbo_method: :delete } %></li>
+          <li><%= link_to "My Profile", user_path(@user) %></li>
+        <% else %>
+          <li><%= link_to "Login", new_user_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </header>
+    <main>
+      <p style="color: red;"><%= alert %></p>
+      <%= yield %>
+    </main>
   </body>
 </html>

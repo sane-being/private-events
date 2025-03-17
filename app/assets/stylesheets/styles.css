@@ -1,0 +1,33 @@
+header {
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 10px 0;
+}
+
+header ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0 15px;
+  justify-content: space-between;
+}
+
+header li {
+  margin-left: 15px;
+}
+
+header li:first-child {
+  margin-right: auto;
+  margin-left: 0;
+  font-size: large;
+}
+
+header a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+header a:hover {
+  color: #007bff;
+}
