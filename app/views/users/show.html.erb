@@ -18,10 +18,24 @@
 
 <div id="events">
   <h2>List of events you are attending:</h2>
+
+  <h3>Past Events</h3>
   <% @attendances.each do |attendance| %>
-    <p>
-      <%= render attendance.attended_event %>
-      <%= link_to "Show this event", attendance.attended_event %>
-    </p>
+    <% if attendance.attended_event.date < Date.today %>
+      <p>
+        <%= render attendance.attended_event %>
+        <%= link_to "Show this event", attendance.attended_event %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <h3>Upcoming Events</h3>
+  <% @attendances.each do |attendance| %>
+    <% if attendance.attended_event.date >= Date.today %>
+      <p>
+        <%= render attendance.attended_event %>
+        <%= link_to "Show this event", attendance.attended_event %>
+      </p>
+    <% end %>
   <% end %>
 </div>
