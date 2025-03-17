@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get "/users/show", to: "users#show", as: "user"
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
   resources :events do
     resources :attendances, only: [ :show, :create, :destroy ]
   end

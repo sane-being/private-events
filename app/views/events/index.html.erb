@@ -12,7 +12,6 @@
 <div id="events">
   <% Event.past.each do |event| %>
     <%= render event %>
-    <p>Created by: <%= event.creator.email%></p>
     <p>
       <%= link_to "Show this event", event %>
     </p>
@@ -24,7 +23,6 @@
 <div id="events">
   <% Event.upcoming.each do |event| %>
     <%= render event %>
-    <p>Created by: <%= event.creator.email%></p>
     <p>
       <%= link_to "Show this event", event %>
     </p>

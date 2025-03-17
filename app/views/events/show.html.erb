@@ -4,12 +4,13 @@
 
 <p style="color: green"><%= notice %></p>
 
-<%= render @event %>
-<p><strong>Created by:</strong> <%= @event.creator.email%></p>
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+<div>
+  <%= render @event %>
+  <p>
+    <strong>Description:</strong>
+    <%= @event.description %>
+  </p>
+</div>
 
 <div>
   <% if user_signed_in? %>
@@ -29,6 +30,6 @@
 <div>
   <h2>List of attendees for this event:</h2>
   <% @event.attendances.each do |attendance| %>
-    <p><%= attendance.attendee.email%></p>
+    <p><%= attendance.attendee.username %></p>
   <% end %>
 </div>
