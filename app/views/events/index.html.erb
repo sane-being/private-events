@@ -8,8 +8,21 @@
   <p><%= link_to "New event", new_event_path %></p>
 <% end %>
 
+<h3>Past Events</h3>
 <div id="events">
-  <% @events.each do |event| %>
+  <% Event.past.each do |event| %>
+    <%= render event %>
+    <p>Created by: <%= event.creator.email%></p>
+    <p>
+      <%= link_to "Show this event", event %>
+    </p>
+  <% end %>
+</div>
+
+<h3>Upcoming Events</h3>
+
+<div id="events">
+  <% Event.upcoming.each do |event| %>
     <%= render event %>
     <p>Created by: <%= event.creator.email%></p>
     <p>
