@@ -69,7 +69,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.expect(event: [ :date, :location ])
+      params.expect(event: [ :title, :date, :location ])
     end
 
     # verify event creator

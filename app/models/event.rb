@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   # validations
   validates :date, presence: true
   validates :location, presence: true
+  validates :title, presence: true
 
   # associations
   belongs_to :creator, class_name: "User"
