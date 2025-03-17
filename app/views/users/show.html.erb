@@ -20,7 +20,7 @@
   <h2>List of events you are attending:</h2>
 
   <h3>Past Events</h3>
-  <% @user.attended_events.each do |event| %>
+  <% @user.attended_events.past.each do |event| %>
     <p>
       <%= render event %>
       <%= link_to "Show this event", event %>
@@ -28,7 +28,7 @@
   <% end %>
 
   <h3>Upcoming Events</h3>
-  <% @user.attended_events.each do |event| %>
+  <% @user.attended_events.upcoming.each do |event| %>
     <p>
       <%= render event %>
       <%= link_to "Show this event", event %>
