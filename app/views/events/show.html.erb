@@ -29,7 +29,11 @@
 
 <div>
   <h2>List of attendees for this event:</h2>
-  <% @event.attendances.each do |attendance| %>
-    <p><%= attendance.attendee.username %></p>
-  <% end %>
+  <% if @event.attendances.present? %>
+    <% @event.attendances.each do |attendance| %>
+      <p><%= attendance.attendee.username %></p>
+    <% end %>
+  <% else %>
+    <p>No attendees yet</p>
+  <% end%>
 </div>

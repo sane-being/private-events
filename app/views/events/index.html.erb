@@ -10,23 +10,30 @@
 
 <h3>Past Events</h3>
 <div id="events">
-  <% Event.past.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
-  <% end %>
+  <% if @events.past.present? %>
+    <% @events.past.each do |event| %>
+      <%= render event %>
+      <p>
+        <%= link_to "Show this event", event %>
+      </p>
+    <% end %>
+  <% else %>
+    <p>No past events</p>
+  <% end%>
 </div>
 
 <h3>Upcoming Events</h3>
-
 <div id="events">
-  <% Event.upcoming.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
-  <% end %>
+  <% if @events.upcoming.present? %>
+    <% @events.upcoming.each do |event| %>
+      <%= render event %>
+      <p>
+        <%= link_to "Show this event", event %>
+      </p>
+    <% end %>
+  <% else %>
+    <p>No upcoming events</p>
+  <% end%>
 </div>
 
 
