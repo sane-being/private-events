@@ -1,3 +1,5 @@
+<h1>Event Details</h1>
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @event %>
@@ -16,5 +18,12 @@
         <p><%= button_to "Attend this event", event_attendances_path(@event), method: :post %></p>
       <% end %>
     <% end %>
+  <% end %>
+</div>
+
+<div>
+  <h2>List of attendees for this event:</h2>
+  <% @attendances.each do |attendance| %>
+    <p><%= attendance.attendee.email%></p>
   <% end %>
 </div>
